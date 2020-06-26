@@ -1,0 +1,3 @@
+commands:
+  startupkit:
+    description: List all startupKit solution partners.
