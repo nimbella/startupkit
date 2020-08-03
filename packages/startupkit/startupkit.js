@@ -8,58 +8,40 @@
  * @return {Promise<SlackBodyType>} Response body
  */
 async function _command(params, commandText, secrets = {}) {
-  const result = [];
-  const sponsors = [
-    {
-      category: 'Marketing Attrubution',
-      partner: 'Branch',
-      intro:
-        'Increase mobile revenue with enterprise-grade links built to acquire, engage, and measure across all devices, channels, and platforms.',
-      singup: {
-        link: 'https://branch.io',
-        offer:
-          'Signup with coupon startupKit and get startup plan worth $59 / mo free for a month'
-      }
-    },
-    {
-      category: 'Marketing Automation',
-      partner: 'Clevertap',
-      intro:
-        'User retention is more than just keeping your mobile app users. It’s about building loyal relationships that drive revenue growth.',
-      singup: {
-        link: 'https://clevertap.com/',
-        offer: 'Signup with coupon STARTUPKIT to get a month for free.'
-      }
-    }
-  ];
-
-  for (let i = 0; i < sponsors.length; i++) {
-    const sponsor = sponsors[i];
-    const singupText = sponsor.singup.offer.replace(
-      'Signup',
-      `<${sponsor.singup.link}|Singup>`
-    );
-    result.push(
-      {
-        type: 'section',
-        text: {
-          type: 'mrkdwn',
-          text: `*${sponsor.category} -* *${sponsor.partner}:* ${sponsor.intro}`
-        }
-      },
-      {
-        type: 'section',
-        text: {
-          type: 'mrkdwn',
-          text: `${singupText}`
-        }
-      }
-    );
-  }
-
   return {
     response_type: 'in_channel', // or `ephemeral` for private response
-    blocks: result
+    text: `Startup kit is an editable workflow that automates the key processes of Lead Generation and Sales, Marketing and Analytics, HR and Finance domains.
+
+    \`/nc startupkit\`
+    
+    Ready to use workflows for Lead Generation and Sales, Marketing and Analytics, HR and Finance domains.
+    
+    Here are some examples of automating processes and quickly scaling your startup:
+    
+    *Lead Generation and Customer Management*: Signup with X Partner Name, use a special coupon MakeAthon and use the tool-free for 6 months.
+    X  Partner Name Command Set:
+    \`/nc inbound leads\`  - the total number of generated leads in the last X days 
+    \`/nc tickets open\` - the total number of open and closed tickets in the last X days
+    \`/nc outbound leads\` - the total number of generated leads with X conversions, X generated contacts
+    
+    *Marketing and Analytics*:  Signup with X Partner Name, use coupon MakeAthon and get a startup plan normally priced at $59 / mo., free for one month.
+    X Partner Name Command Set: 
+    \`/nc traffic competitor\` - the website traffic growth in the last X days
+    \`/nc social stats\` - the dynamic of audience growth on FB, Linkedin, Instagram, Twitter
+    \`/nc mentions\` - total number of brand mansions in the last X days
+    
+    *HR*:  Signup with X Partner Name, use coupon MakeAthon and get a startup plan normally priced at $59 / mo., free for one month.
+    X Partner Name Command Set:
+    \`/nc new openings\`-  X active openings, X new applications, X today’s interviews, X new activities
+    \`/nc time tracker\`- total X minutes went for clients, total X minutes went to projects, X minutes went to task
+    \`/nc HR analytics\` - employee turnover X months, satisfaction rate is X
+     
+    *Finance*:  Signup with X Partner Name, use coupon MakeAthon and get a startup plan normally priced at $59 / mo., free for one month.
+    X Partner Name Command Set: 
+    \`/nc transaction\` - the total amount of revenue and number of transactions in X months 
+    \`/nc x product revenue\` - revenue for the types of products
+    \`/nc refunds\` - the total amount of refunds in the last X days
+    `
   };
 }
 
